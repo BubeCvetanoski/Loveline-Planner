@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "506179462440",
+    "project_id": "loveline-planner",
+    "storage_bucket": "loveline-planner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506179462440:android:8a0f6d0672e92315b8dc1d",
+        "android_client_info": {
+          "package_name": "com.lovelineplanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGXTLRzdr8OJC3R3wLzkgsRK1vUwo7hDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
