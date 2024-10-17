@@ -1,4 +1,4 @@
-package com.lovelineplanner.ui.composables
+package com.lovelineplanner.presentation.ui.composables
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.lovelineplanner.ui.theme.AppTheme
+import com.lovelineplanner.presentation.ui.theme.AppTheme
 
 @Composable
 fun PrimaryButton(

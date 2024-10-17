@@ -1,4 +1,4 @@
-package com.lovelineplanner.ui.theme
+package com.lovelineplanner.presentation.ui.theme
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
