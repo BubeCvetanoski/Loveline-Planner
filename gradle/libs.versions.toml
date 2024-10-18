@@ -13,6 +13,7 @@ firebaseBom = "33.4.0"
 firebaseCrashlytics = "3.0.2"
 splashScreen = "1.0.1"
 coil = "2.7.0"
+extendedIcons = "1.7.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -36,6 +37,7 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics-ktx" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebaseCrashlytics" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "extendedIcons" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

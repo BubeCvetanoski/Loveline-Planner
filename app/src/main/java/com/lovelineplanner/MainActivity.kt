@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Icon
@@ -105,10 +107,163 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+fun SignUpFields(
+    onSignInClicked: () -> Unit
+) {
+    var username by remember { mutableStateOf("Username") }
+    var password by remember { mutableStateOf("Password") }
+
+    Text(
+        text = "Get started",
+        color = White,
+        style = AppTheme.typography.titleLarge,
+        fontSize = 32.sp
+    )
+    Text(
+        text = "Create a free account",
+        color = White,
+        style = AppTheme.typography.body
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.large))
+    LoginTextField(
+        modifier = Modifier.fillMaxWidth(),
+        onValueChange = { newText -> username = newText },
+        text = username,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.AccountCircle,
+                contentDescription = "sign_up_username_icon"
+            )
+        }
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.medium))
+    LoginTextField(
+        modifier = Modifier.fillMaxWidth(),
+        onValueChange = { },
+        text = "Email",
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Email,
+                contentDescription = "sign_up_email_icon"
+            )
+        }
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.medium))
+    LoginTextField(
+        modifier = Modifier.fillMaxWidth(),
+        onValueChange = { newText -> password = newText },
+        text = password,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Lock,
+                contentDescription = "sign_up_lock_icon"
+            )
+        },
+        isPasswordField = true,
+        hasVisibilityToggle = true
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.large))
+    PrimaryButton(
+        modifier = Modifier.fillMaxWidth(),
+        label = "CREATE",
+        onClick = {}
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.medium))
+    //Todo wedding date picker
+    Spacer(modifier = Modifier.height(AppTheme.size.large))
+    Row(
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Already have an account?",
+            color = White,
+            style = AppTheme.typography.body
+        )
+        Text(
+            text = " Sign in",
+            color = White,
+            style = AppTheme.typography.body,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.clickable { onSignInClicked.invoke() }
+        )
+    }
+}
+
+@Composable
+fun SignInFields(
+    onSignUpClicked: () -> Unit
+) {
+    var password by remember { mutableStateOf("Password") }
+
+    Text(
+        text = "Welcome",
+        color = White,
+        style = AppTheme.typography.titleLarge,
+        fontSize = 32.sp
+    )
+    Text(
+        text = "Please Login to get started",
+        color = White,
+        style = AppTheme.typography.body
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.large))
+    LoginTextField(
+        modifier = Modifier.fillMaxWidth(),
+        onValueChange = {},
+        text = "Email",
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Email,
+                contentDescription = "sign_in_email_icon"
+            )
+        }
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.medium))
+    LoginTextField(
+        modifier = Modifier.fillMaxWidth(),
+        onValueChange = { newText -> password = newText },
+        text = password,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Lock,
+                contentDescription = "sign_in_lock_icon"
+            )
+        },
+        isPasswordField = true,
+        onForgotClick = {}
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.large))
+    PrimaryButton(
+        modifier = Modifier.fillMaxWidth(),
+        label = "LOGIN",
+        onClick = {}
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.large))
+    Row(
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Don't have an account?",
+            color = White,
+            style = AppTheme.typography.body
+        )
+        Text(
+            text = " Sign up",
+            color = White,
+            style = AppTheme.typography.body,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.clickable { onSignUpClicked.invoke() }
+        )
+    }
+}
+
+@Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
     context: Context
 ) {
+    var isSignUpScreen by remember { mutableStateOf(true) }
+
     Box(
         modifier = modifier.fillMaxSize()
     ) {
@@ -128,71 +283,14 @@ fun LoginScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Welcome",
-                color = White,
-                style = AppTheme.typography.titleLarge,
-                fontSize = 32.sp
-            )
-            Text(
-                text = "Please Login to get started",
-                color = White,
-                style = AppTheme.typography.body
-            )
-            Spacer(modifier = Modifier.height(AppTheme.size.large))
-            LoginTextField(
-                modifier = Modifier.fillMaxWidth(),
-                onValueChange = {},
-                value = "Email",
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Outlined.Email,
-                        contentDescription = "login_email_icon"
-                    )
-                }
-            )
-            Spacer(modifier = Modifier.height(AppTheme.size.medium))
-            LoginTextField(
-                modifier = Modifier.fillMaxWidth(),
-                onValueChange = {},
-                value = "Password",
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Outlined.Lock,
-                        contentDescription = "login_lock_icon"
-                    )
-                },
-                trailingIcon = {
-                    Text(
-                        text = "Forgot?",
-                        fontWeight = FontWeight.Bold,
-                        style = AppTheme.typography.labelNormal,
-                        modifier = Modifier.padding(end = 16.dp)
-                    )
-                }
-            )
-            Spacer(modifier = Modifier.height(AppTheme.size.large))
-            PrimaryButton(
-                modifier = Modifier.fillMaxWidth(),
-                label = "LOGIN",
-                onClick = {}
-            )
-            Spacer(modifier = Modifier.height(AppTheme.size.large))
-            Row(
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Don't have an account?",
-                    color = White,
-                    style = AppTheme.typography.body
+            if (isSignUpScreen)
+                SignUpFields(
+                    onSignInClicked = { isSignUpScreen = false }
                 )
-                Text(
-                    text = " Sign Up",
-                    color = White,
-                    style = AppTheme.typography.body,
-                    fontWeight = FontWeight.Bold
+            else
+                SignInFields(
+                    onSignUpClicked = { isSignUpScreen = true }
                 )
-            }
         }
     }
 }
