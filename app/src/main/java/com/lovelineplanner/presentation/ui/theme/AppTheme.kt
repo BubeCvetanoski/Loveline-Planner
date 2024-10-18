@@ -25,7 +25,7 @@ private val darkColorScheme = AppColorScheme(
     onBackground = LightGray,
     primary = DarkGold,
     onPrimary = CharcoalBlack,
-    secondary = LightRoseGold,
+    secondary = White,
     onSecondary = CharcoalBlack
 )
 

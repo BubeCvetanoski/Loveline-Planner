@@ -47,7 +47,8 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/*"
+            merges += "git.properties"
         }
     }
 }
@@ -65,6 +66,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.splash.screen)
+
+    implementation(libs.coil)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging)
