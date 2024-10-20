@@ -45,6 +45,7 @@ import androidx.core.view.WindowInsetsCompat
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.lovelineplanner.presentation.ui.composables.EquallyDistributedOverlay
+import com.lovelineplanner.presentation.ui.composables.LoginDatePicker
 import com.lovelineplanner.presentation.ui.composables.LoginTextField
 import com.lovelineplanner.presentation.ui.composables.PrimaryButton
 import com.lovelineplanner.presentation.ui.theme.AppTheme
@@ -110,8 +111,9 @@ class MainActivity : ComponentActivity() {
 fun SignUpFields(
     onSignInClicked: () -> Unit
 ) {
-    var username by remember { mutableStateOf("Username") }
-    var password by remember { mutableStateOf("Password") }
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var selectedDate by remember { mutableStateOf<Long?>(null) }
 
     Text(
         text = "Get started",
@@ -127,6 +129,12 @@ fun SignUpFields(
     Spacer(modifier = Modifier.height(AppTheme.size.large))
     LoginTextField(
         modifier = Modifier.fillMaxWidth(),
+        placeholder = {
+            Text(
+                text = "Username",
+                style = AppTheme.typography.body
+            )
+        },
         onValueChange = { newText -> username = newText },
         text = username,
         leadingIcon = {
@@ -137,10 +145,21 @@ fun SignUpFields(
         }
     )
     Spacer(modifier = Modifier.height(AppTheme.size.medium))
+    LoginDatePicker(
+        selectedDate = selectedDate,
+        onDateSelected = { newDate -> selectedDate = newDate }
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.medium))
     LoginTextField(
         modifier = Modifier.fillMaxWidth(),
-        onValueChange = { },
-        text = "Email",
+        placeholder = {
+            Text(
+                text = "Email",
+                style = AppTheme.typography.body
+            )
+        },
+        onValueChange = { }, //Todo
+        text = "",
         leadingIcon = {
             Icon(
                 imageVector = Icons.Outlined.Email,
@@ -151,6 +170,12 @@ fun SignUpFields(
     Spacer(modifier = Modifier.height(AppTheme.size.medium))
     LoginTextField(
         modifier = Modifier.fillMaxWidth(),
+        placeholder = {
+            Text(
+                text = "Password",
+                style = AppTheme.typography.body
+            )
+        },
         onValueChange = { newText -> password = newText },
         text = password,
         leadingIcon = {
@@ -168,8 +193,6 @@ fun SignUpFields(
         label = "CREATE",
         onClick = {}
     )
-    Spacer(modifier = Modifier.height(AppTheme.size.medium))
-    //Todo wedding date picker
     Spacer(modifier = Modifier.height(AppTheme.size.large))
     Row(
         horizontalArrangement = Arrangement.Center
@@ -193,7 +216,7 @@ fun SignUpFields(
 fun SignInFields(
     onSignUpClicked: () -> Unit
 ) {
-    var password by remember { mutableStateOf("Password") }
+    var password by remember { mutableStateOf("") }
 
     Text(
         text = "Welcome",
@@ -209,8 +232,14 @@ fun SignInFields(
     Spacer(modifier = Modifier.height(AppTheme.size.large))
     LoginTextField(
         modifier = Modifier.fillMaxWidth(),
-        onValueChange = {},
-        text = "Email",
+        placeholder = {
+            Text(
+                text = "Email",
+                style = AppTheme.typography.body
+            )
+        },
+        onValueChange = {}, //Todo
+        text = "",
         leadingIcon = {
             Icon(
                 imageVector = Icons.Outlined.Email,
@@ -221,6 +250,12 @@ fun SignInFields(
     Spacer(modifier = Modifier.height(AppTheme.size.medium))
     LoginTextField(
         modifier = Modifier.fillMaxWidth(),
+        placeholder = {
+            Text(
+                text = "Password",
+                style = AppTheme.typography.body
+            )
+        },
         onValueChange = { newText -> password = newText },
         text = password,
         leadingIcon = {

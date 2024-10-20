@@ -37,24 +37,21 @@ fun LoginTextField(
     onValueChange: (String) -> Unit,
     text: String,
     leadingIcon: @Composable (() -> Unit)? = null,
+    placeholder: @Composable (() -> Unit)? = null,
     isPasswordField: Boolean = false,
     hasVisibilityToggle: Boolean = false,
     onForgotClick: (() -> Unit)? = null
 ) {
     var isPasswordVisible by remember { mutableStateOf(true) }
-    var hasBeenClicked by remember { mutableStateOf(false) }
     val transparentWhiteColor = LightGray.copy(alpha = 0.4f)
 
     OutlinedTextField(
-        modifier = modifier.onFocusChanged { focusState ->
-            if (focusState.isFocused && !hasBeenClicked) {
-                if (isPasswordField) {
-                    isPasswordVisible = !isPasswordVisible
-                }
-                onValueChange("")
-                hasBeenClicked = true
+        modifier = modifier.onFocusChanged { focusState->
+            if (focusState.isFocused && isPasswordField) {
+                isPasswordVisible = !isPasswordVisible
             }
         },
+        placeholder = placeholder,
         value = text,
         onValueChange = { newText ->
             onValueChange(newText)
@@ -102,13 +99,15 @@ fun LoginTextField(
             focusedIndicatorColor = Transparent,
             unfocusedTextColor = White,
             focusedTextColor = White,
-            cursorColor = White,
             unfocusedLeadingIconColor = White,
             focusedLeadingIconColor = White,
             unfocusedTrailingIconColor = White,
             focusedTrailingIconColor = White,
             unfocusedSuffixColor = White,
-            focusedSuffixColor = White
+            focusedSuffixColor = White,
+            unfocusedPlaceholderColor = White,
+            focusedPlaceholderColor = White,
+            cursorColor = White
         )
     )
 }
