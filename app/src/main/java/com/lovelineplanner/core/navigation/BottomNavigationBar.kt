@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
@@ -35,7 +34,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.lovelineplanner.core.navigation.guests.GuestsGraph
 import com.lovelineplanner.core.navigation.home.HomeGraph
-import com.lovelineplanner.core.navigation.plan.PlanGraph
+import com.lovelineplanner.core.navigation.planning.PlanningGraph
 import com.lovelineplanner.core.navigation.profile.ProfileGraph
 import com.lovelineplanner.ui.theme.AppTheme
 import com.lovelineplanner.ui.theme.Transparent
@@ -53,8 +52,8 @@ fun BottomNavigationBar(
                 unselectedIcon = Icons.Outlined.Home
             ),
             BottomNavItem(
-                name = "Plan",
-                route = PlanGraph,
+                name = "Planning",
+                route = PlanningGraph,
                 selectedIcon = Icons.Filled.Task,
                 unselectedIcon = Icons.Outlined.Task
             ),
@@ -80,13 +79,13 @@ fun BottomNavigationBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(110.dp)
-                .clip(RoundedCornerShape(16.dp))
+                .clip(AppTheme.shape.container)
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
                         color = AppTheme.colorScheme.onBackground.copy(alpha = 0.5f)
                     ),
-                    shape = RoundedCornerShape(16.dp)
+                    shape = AppTheme.shape.container
                 )
         )
         NavigationBar(
@@ -94,7 +93,7 @@ fun BottomNavigationBar(
                 .fillMaxWidth()
                 .height(108.dp)
                 .align(Alignment.BottomCenter)
-                .clip(RoundedCornerShape(16.dp)),
+                .clip(AppTheme.shape.container),
             containerColor = AppTheme.colorScheme.background,
             contentColor = AppTheme.colorScheme.onBackground
         ) {
