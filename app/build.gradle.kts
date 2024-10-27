@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.compose.plugin)
+    alias(libs.plugins.serialization)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
 }
@@ -67,6 +68,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.splash.screen)
+    implementation(libs.androidx.navigation)
+    implementation(libs.kotlinx.serialization)
+
     implementation(libs.coil)
 
     implementation(platform(libs.firebase.bom))

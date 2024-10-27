@@ -1,4 +1,4 @@
-package com.lovelineplanner.presentation.ui.composables
+package com.lovelineplanner.ui.composables
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import androidx.compose.foundation.clickable
@@ -26,10 +26,10 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.lovelineplanner.presentation.ui.theme.AppTheme
-import com.lovelineplanner.presentation.ui.theme.LightGray
-import com.lovelineplanner.presentation.ui.theme.Transparent
-import com.lovelineplanner.presentation.ui.theme.White
+import com.lovelineplanner.ui.theme.AppTheme
+import com.lovelineplanner.ui.theme.LightGray
+import com.lovelineplanner.ui.theme.Transparent
+import com.lovelineplanner.ui.theme.White
 
 @Composable
 fun LoginTextField(

@@ -1,4 +1,4 @@
-package com.lovelineplanner.presentation.ui.theme
+package com.lovelineplanner.ui.theme
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -25,7 +25,7 @@ private val darkColorScheme = AppColorScheme(
     onBackground = LightGray,
     primary = DarkGold,
     onPrimary = CharcoalBlack,
-    secondary = White,
+    secondary = PaleGold,
     onSecondary = CharcoalBlack
 )
 

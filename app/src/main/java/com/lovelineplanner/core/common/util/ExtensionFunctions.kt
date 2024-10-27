@@ -1,4 +1,4 @@
-package com.lovelineplanner.util
+package com.lovelineplanner.core.common.util
 
 import android.animation.ObjectAnimator
 import android.view.View

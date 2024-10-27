@@ -1,4 +1,4 @@
-package com.lovelineplanner.util
+package com.lovelineplanner.core.common.util
 
 import java.text.SimpleDateFormat
 import java.util.Date
