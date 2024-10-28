@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 
 private val lightColorScheme = AppColorScheme(
     background = IvoryWhite,
-    onBackground = SlateGray,
+    onBackground = CharcoalBlack,
     primary = Gold,
     onPrimary = White,
     secondary = DarkGold,
