@@ -83,7 +83,7 @@ fun BottomNavigationBar(
                 .border(
                     border = BorderStroke(
                         width = 1.dp,
-                        color = AppTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                        color = AppTheme.colorScheme.onBackground.copy(alpha = 0.8f)
                     ),
                     shape = AppTheme.shape.container
                 )

@@ -1,5 +1,6 @@
-package com.lovelineplanner.features.login.presentation.components.sign_up
+package com.lovelineplanner.features.login.presentation.components
 
+import LoginDatePicker
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -20,8 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.lovelineplanner.ui.composables.LoginDatePicker
-import com.lovelineplanner.ui.composables.LoginTextField
 import com.lovelineplanner.ui.composables.PrimaryButton
 import com.lovelineplanner.ui.theme.AppTheme
 import com.lovelineplanner.ui.theme.White

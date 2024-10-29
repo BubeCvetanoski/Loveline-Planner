@@ -35,12 +35,12 @@ fun GuestsScreenHeader(
         modifier = modifier
             .fillMaxWidth()
             .height(200.dp)
-            .clip(
-                shape = RoundedCornerShape(
-                    bottomStart = 16.dp,
-                    bottomEnd = 16.dp
-                )
-            )
+//            .clip(
+//                shape = RoundedCornerShape(
+//                    bottomStart = 16.dp,
+//                    bottomEnd = 16.dp
+//                )
+//            )
     ) {
         SubcomposeAsyncImage(
             model = ImageRequest.Builder(context)

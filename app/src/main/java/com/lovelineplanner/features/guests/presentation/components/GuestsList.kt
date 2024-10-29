@@ -25,7 +25,10 @@ fun GuestsList(
     LazyColumn(
         modifier = modifier
             .fillMaxSize(),
-        contentPadding = PaddingValues(AppTheme.size.normal),
+        contentPadding = PaddingValues(
+            start = AppTheme.size.normal,
+            end = AppTheme.size.normal
+        ),
         verticalArrangement = Arrangement.spacedBy(AppTheme.size.small)
     ) {
         items(listOfItems) { item ->

@@ -18,8 +18,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.lovelineplanner.R
-import com.lovelineplanner.features.login.presentation.components.sign_in.SignInFields
-import com.lovelineplanner.features.login.presentation.components.sign_up.SignUpFields
+import com.lovelineplanner.features.login.presentation.components.SignInFields
+import com.lovelineplanner.features.login.presentation.components.SignUpFields
 import com.lovelineplanner.ui.composables.EquallyDistributedOverlay
 
 @Composable

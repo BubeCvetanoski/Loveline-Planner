@@ -1,6 +1,7 @@
-package com.lovelineplanner.features.guests.presentation
+package com.lovelineplanner.features.guests.presentation.guests_overview
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,6 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.lovelineplanner.features.guests.presentation.components.GuestsList
 import com.lovelineplanner.features.guests.presentation.components.GuestsScreenHeader
+import com.lovelineplanner.features.guests.presentation.components.GuestsSearchTextField
 import com.lovelineplanner.ui.theme.AppTheme
 import com.lovelineplanner.ui.theme.White
 
@@ -33,7 +36,8 @@ fun GuestsScreen(
     Column(
         modifier = modifier
             .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(AppTheme.size.normal)
     ) {
         Box(
             modifier = Modifier.height(224.dp)
@@ -42,7 +46,7 @@ fun GuestsScreen(
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .size(50.dp)
+                    .size(49.dp)
                     .clip(AppTheme.shape.button)
                     .background(AppTheme.colorScheme.background)
             ) {
@@ -55,7 +59,12 @@ fun GuestsScreen(
                         .align(Alignment.BottomCenter)
                         .size(48.dp)
                         .clip(CircleShape)
-                        .padding(2.dp)
+                        .padding(
+                            top = 2.dp,
+                            bottom = 2.dp,
+                            start = 2.5.dp,
+                            end = 2.5.dp
+                        )
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
@@ -65,6 +74,18 @@ fun GuestsScreen(
                 }
             }
         }
+        GuestsSearchTextField(
+            text = "",
+            onValueChange = {},
+            onSearch = {}
+        )
+        HorizontalDivider(
+//            modifier = Modifier.padding(
+//                start = AppTheme.size.large,
+//                end = AppTheme.size.large
+//            ),
+            color = AppTheme.colorScheme.onBackground.copy(alpha = 0.8f)
+        )
         GuestsList()
     }
 }

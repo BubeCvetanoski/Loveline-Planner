@@ -37,7 +37,7 @@ fun GuestsItemCard(
             .border(
                 border = BorderStroke(
                     width = 1.dp,
-                    color = AppTheme.colorScheme.secondary
+                    color = AppTheme.colorScheme.primary
                 ),
                 shape = AppTheme.shape.container
             )
