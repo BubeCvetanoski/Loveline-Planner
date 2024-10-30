@@ -128,7 +128,12 @@ fun BottomNavigationBar(
                             contentDescription = destination.name
                         )
                     },
-                    label = { Text(destination.name) },
+                    label = {
+                        Text(
+                            text = destination.name,
+                            style = AppTheme.typography.labelNormal
+                        )
+                    },
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = AppTheme.colorScheme.onBackground,
                         selectedTextColor = AppTheme.colorScheme.onBackground,

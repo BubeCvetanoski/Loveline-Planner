@@ -47,13 +47,16 @@ fun GuestsItemCard(
         Box(
             modifier = Modifier
                 .size(48.dp)
-                .background(AppTheme.colorScheme.primary, CircleShape),
+                .background(
+                    color = AppTheme.colorScheme.primary,
+                    shape = CircleShape
+                ),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "BC",
-                color = AppTheme.colorScheme.onPrimary,
                 style = AppTheme.typography.labelLarge,
+                color = AppTheme.colorScheme.onPrimary,
                 textAlign = TextAlign.Center
             )
         }

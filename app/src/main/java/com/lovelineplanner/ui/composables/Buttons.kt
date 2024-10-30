@@ -52,7 +52,10 @@ fun SecondaryButton(
             contentColor = AppTheme.colorScheme.onPrimary
         ),
         shape = AppTheme.shape.button,
-        border = BorderStroke(2.dp, AppTheme.colorScheme.secondary)
+        border = BorderStroke(
+            width = 2.dp,
+            color = AppTheme.colorScheme.secondary
+        )
     ) {
         Text(
             text = label,
@@ -74,7 +77,7 @@ private fun PreviewButtons() {
                 label = "Primary",
                 onClick = {}
             )
-            SecondaryButton (
+            SecondaryButton(
                 label = "Secondary",
                 onClick = {}
             )

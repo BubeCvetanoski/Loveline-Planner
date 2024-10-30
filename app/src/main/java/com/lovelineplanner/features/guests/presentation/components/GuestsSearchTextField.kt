@@ -55,11 +55,11 @@ fun GuestsSearchTextField(
                 focusedContainerColor = AppTheme.colorScheme.background,
                 unfocusedIndicatorColor = AppTheme.colorScheme.primary,
                 focusedIndicatorColor = AppTheme.colorScheme.secondary,
-                unfocusedTextColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+                unfocusedTextColor = AppTheme.colorScheme.onBackground,
                 focusedTextColor = AppTheme.colorScheme.onBackground,
                 unfocusedTrailingIconColor = AppTheme.colorScheme.onBackground,
                 focusedTrailingIconColor = AppTheme.colorScheme.onBackground,
-                unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground,
+                unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
                 focusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
                 cursorColor = AppTheme.colorScheme.onBackground
             ),
