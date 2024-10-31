@@ -69,6 +69,7 @@ dependencies {
 
     implementation(libs.androidx.splash.screen)
     implementation(libs.androidx.navigation)
+    implementation(libs.androidx.compose.adaptive.navigation)
     implementation(libs.kotlinx.serialization)
 
     implementation(libs.coil)

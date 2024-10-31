@@ -1,4 +1,4 @@
-package com.lovelineplanner.ui.composables
+package com.lovelineplanner.core.presentation.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,7 +11,7 @@ import com.lovelineplanner.ui.theme.OverlayColor
 import com.lovelineplanner.ui.theme.Transparent
 
 @Composable
-fun VerticalGradientOverlay(
+fun InvertedVerticalGradientOverlay(
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -23,7 +23,8 @@ fun VerticalGradientOverlay(
                         Transparent,
                         OverlayColor
                     ),
-                    startY = 300f
+                    startY = 350f,
+                    endY = 0f
                 )
             )
     )

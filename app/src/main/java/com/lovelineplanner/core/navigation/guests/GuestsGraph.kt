@@ -18,7 +18,7 @@ fun NavGraphBuilder.guestsGraph(
 ) {
     navigation<GuestsGraph>(startDestination = Guests) {
         composable<Guests> {
-            GuestsScreen()
+            AdaptiveGuestsListDetailPane()
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.lovelineplanner.features.guests.presentation.components
+package com.lovelineplanner.features.guests.presentation.guests_overview.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

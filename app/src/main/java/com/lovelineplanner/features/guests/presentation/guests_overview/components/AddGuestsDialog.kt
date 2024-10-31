@@ -1,8 +1,6 @@
-package com.lovelineplanner.features.guests.presentation.components
+package com.lovelineplanner.features.guests.presentation.guests_overview.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,14 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.KeyboardArrowDown
-import androidx.compose.material.icons.rounded.KeyboardArrowUp
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -33,10 +27,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.lovelineplanner.core.presentation.composables.DropdownSelector
 import com.lovelineplanner.ui.theme.AppTheme
 
 @Composable
@@ -78,7 +72,8 @@ fun AddGuestsDialog(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(AppTheme.size.small),
+                    .padding(AppTheme.size.small)
+                    .verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(AppTheme.size.normal)
             ) {
                 OutlinedTextField(
@@ -217,7 +212,7 @@ fun AddGuestsDialog(
                     }
                 }) {
                 Text(
-                    text = "Confirm",
+                    text = "Add",
                     style = AppTheme.typography.body,
                     color = AppTheme.colorScheme.onBackground
                 )
@@ -236,83 +231,6 @@ fun AddGuestsDialog(
         },
         containerColor = AppTheme.colorScheme.background
     )
-}
-
-@Composable
-fun DropdownSelector(
-    modifier: Modifier = Modifier,
-    placeholder: String,
-    options: List<String>,
-    selectedOption: String,
-    onOptionSelected: (String) -> Unit
-) {
-    var expanded by remember { mutableStateOf(false) }
-
-    Column(
-        modifier = modifier
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clickable { expanded = !expanded }
-                .border(
-                    width = 1.dp,
-                    color = if (expanded)
-                        AppTheme.colorScheme.onBackground
-                    else
-                        AppTheme.colorScheme.onBackground.copy(0.8f),
-                    shape = AppTheme.shape.button
-                )
-                .clip(AppTheme.shape.button)
-                .background(AppTheme.colorScheme.background)
-                .padding(AppTheme.size.medium)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = selectedOption.ifEmpty { placeholder },
-                    style = AppTheme.typography.labelNormal,
-                    color = if (selectedOption.isNotEmpty())
-                        AppTheme.colorScheme.onBackground
-                    else
-                        AppTheme.colorScheme.onBackground.copy(0.8f)
-                )
-                Icon(
-                    imageVector = if (expanded)
-                        Icons.Rounded.KeyboardArrowUp
-                    else
-                        Icons.Rounded.KeyboardArrowDown,
-                    contentDescription = "add_guests_dialog_arrow_down",
-                    tint = AppTheme.colorScheme.onBackground
-                )
-            }
-        }
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false },
-            modifier = Modifier
-                .background(AppTheme.colorScheme.background)
-        ) {
-            options.forEach { option ->
-                DropdownMenuItem(
-                    onClick = {
-                        onOptionSelected(option)
-                        expanded = false
-                    },
-                    text = {
-                        Text(
-                            text = option,
-                            style = AppTheme.typography.labelNormal,
-                            color = AppTheme.colorScheme.onBackground
-                        )
-                    }
-                )
-            }
-        }
-    }
 }
 
 @PreviewLightDark

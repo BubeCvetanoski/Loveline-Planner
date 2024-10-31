@@ -19,7 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.lovelineplanner.ui.composables.PrimaryButton
+import com.lovelineplanner.core.presentation.composables.PrimaryButton
 import com.lovelineplanner.ui.theme.AppTheme
 import com.lovelineplanner.ui.theme.White
 

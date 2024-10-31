@@ -20,7 +20,7 @@ import coil.request.ImageRequest
 import com.lovelineplanner.R
 import com.lovelineplanner.features.login.presentation.components.SignInFields
 import com.lovelineplanner.features.login.presentation.components.SignUpFields
-import com.lovelineplanner.ui.composables.EquallyDistributedOverlay
+import com.lovelineplanner.core.presentation.composables.EquallyDistributedOverlay
 
 @Composable
 fun LoginScreen(

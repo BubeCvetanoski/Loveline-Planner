@@ -24,7 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import com.lovelineplanner.core.common.util.HelperFunctions.convertMillisToDate
-import com.lovelineplanner.ui.composables.PrimaryButton
+import com.lovelineplanner.core.presentation.composables.PrimaryButton
 import com.lovelineplanner.ui.theme.AppTheme
 import com.lovelineplanner.ui.theme.LightGray
 import com.lovelineplanner.ui.theme.Transparent

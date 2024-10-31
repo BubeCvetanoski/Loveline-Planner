@@ -1,6 +1,7 @@
 package com.lovelineplanner.features.guests.presentation.guests_overview
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,30 +9,36 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.lovelineplanner.features.guests.presentation.components.GuestsList
-import com.lovelineplanner.features.guests.presentation.components.GuestsScreenHeader
-import com.lovelineplanner.features.guests.presentation.components.GuestsSearchTextField
+import com.lovelineplanner.features.guests.presentation.guests_overview.components.AddGuestsDialog
+import com.lovelineplanner.features.guests.presentation.guests_overview.components.GuestsList
+import com.lovelineplanner.features.guests.presentation.guests_overview.components.GuestsScreenHeader
+import com.lovelineplanner.features.guests.presentation.guests_overview.components.GuestsSearchTextField
 import com.lovelineplanner.ui.theme.AppTheme
-import com.lovelineplanner.ui.theme.White
 
 @Composable
 fun GuestsScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onItemCardClick: () -> Unit
 ) {
     val context = LocalContext.current
+    var showAddGuestsDialog by remember {
+        mutableStateOf(false)
+    }
 
     Column(
         modifier = modifier
@@ -49,27 +56,24 @@ fun GuestsScreen(
                     .size(49.dp)
                     .clip(AppTheme.shape.button)
                     .background(AppTheme.colorScheme.background)
+                    .padding(3.dp)
             ) {
-                FloatingActionButton(
-                    onClick = { },
-                    shape = AppTheme.shape.button,
-                    containerColor = AppTheme.colorScheme.primary,
-                    contentColor = AppTheme.colorScheme.onPrimary,
+                Box(
                     modifier = Modifier
-                        .align(Alignment.BottomCenter)
+                        .clickable { showAddGuestsDialog = true }
+                        .align(Alignment.Center)
                         .size(48.dp)
-                        .clip(CircleShape)
-                        .padding(
-                            top = 2.dp,
-                            bottom = 2.dp,
-                            start = 2.5.dp,
-                            end = 2.5.dp
-                        )
+                        .clip(AppTheme.shape.button)
+                        .background(
+                            color = AppTheme.colorScheme.primary,
+                            shape = AppTheme.shape.button
+                        ),
+                    contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
                         contentDescription = "guests_add_icon",
-                        tint = White
+                        tint = AppTheme.colorScheme.onPrimary
                     )
                 }
             }
@@ -80,13 +84,20 @@ fun GuestsScreen(
             onSearch = {}
         )
         HorizontalDivider(
-//            modifier = Modifier.padding(
-//                start = AppTheme.size.large,
-//                end = AppTheme.size.large
-//            ),
-            color = AppTheme.colorScheme.onBackground.copy(alpha = 0.8f)
+            color = AppTheme.colorScheme.onBackground.copy(alpha = 0.1f)
         )
-        GuestsList()
+        GuestsList(
+            onItemCardClick = onItemCardClick
+        )
+
+        if (showAddGuestsDialog) {
+            AddGuestsDialog(
+                onDismissRequest = { showAddGuestsDialog = false },
+                onConfirm = { nameSurname, guests, invitation, status, note ->
+                    showAddGuestsDialog = false
+                }
+            )
+        }
     }
 }
 
@@ -96,7 +107,8 @@ fun GuestsScreen(
 private fun GuestsScreenPreview() {
     AppTheme {
         GuestsScreen(
-            modifier = Modifier.background(AppTheme.colorScheme.background)
+            modifier = Modifier.background(AppTheme.colorScheme.background),
+            onItemCardClick = {}
         )
     }
 }

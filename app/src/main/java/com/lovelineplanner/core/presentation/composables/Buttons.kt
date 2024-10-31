@@ -1,4 +1,4 @@
-package com.lovelineplanner.ui.composables
+package com.lovelineplanner.core.presentation.composables
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
