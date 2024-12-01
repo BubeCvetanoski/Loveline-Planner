@@ -40,7 +40,10 @@ fun EditSwitch(
             )
             .border(
                 width = 1.dp,
-                color = AppTheme.colorScheme.secondary,
+                color = if (isChecked)
+                    AppTheme.colorScheme.secondary
+                else
+                    AppTheme.colorScheme.secondary.copy(alpha = 0.8f),
                 shape = AppTheme.shape.button
             )
             .clickable {
@@ -57,7 +60,7 @@ fun EditSwitch(
             tint = if (isChecked)
                 AppTheme.colorScheme.secondary
             else
-                AppTheme.colorScheme.secondary.copy(alpha = 0.9f),
+                AppTheme.colorScheme.secondary.copy(alpha = 0.8f),
             modifier = Modifier
                 .size(24.dp)
                 .offset(x = if (isChecked) 12.dp else (-12).dp)

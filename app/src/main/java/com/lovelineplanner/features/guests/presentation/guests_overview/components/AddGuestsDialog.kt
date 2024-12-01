@@ -51,6 +51,17 @@ fun AddGuestsDialog(
     var status by remember { mutableStateOf("") }
     var note by remember { mutableStateOf("") }
     val maxNoteLength = 2000
+    val colors = TextFieldDefaults.colors(
+        unfocusedContainerColor = AppTheme.colorScheme.background,
+        focusedContainerColor = AppTheme.colorScheme.background,
+        unfocusedIndicatorColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+        focusedIndicatorColor = AppTheme.colorScheme.onBackground,
+        unfocusedTextColor = AppTheme.colorScheme.onBackground,
+        focusedTextColor = AppTheme.colorScheme.onBackground,
+        unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+        focusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+        cursorColor = AppTheme.colorScheme.onBackground
+    )
 
     AlertDialog(
         modifier = modifier,
@@ -90,17 +101,7 @@ fun AddGuestsDialog(
                     shape = AppTheme.shape.button,
                     textStyle = AppTheme.typography.body,
                     singleLine = true,
-                    colors = TextFieldDefaults.colors(
-                        unfocusedContainerColor = AppTheme.colorScheme.background,
-                        focusedContainerColor = AppTheme.colorScheme.background,
-                        unfocusedIndicatorColor = AppTheme.colorScheme.onBackground.copy(0.8f),
-                        focusedIndicatorColor = AppTheme.colorScheme.onBackground,
-                        unfocusedTextColor = AppTheme.colorScheme.onBackground,
-                        focusedTextColor = AppTheme.colorScheme.onBackground,
-                        unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
-                        focusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
-                        cursorColor = AppTheme.colorScheme.onBackground
-                    )
+                    colors = colors
                 )
                 OutlinedTextField(
                     value = guests,
@@ -121,17 +122,7 @@ fun AddGuestsDialog(
                     shape = AppTheme.shape.button,
                     textStyle = AppTheme.typography.body,
                     singleLine = true,
-                    colors = TextFieldDefaults.colors(
-                        unfocusedContainerColor = AppTheme.colorScheme.background,
-                        focusedContainerColor = AppTheme.colorScheme.background,
-                        unfocusedIndicatorColor = AppTheme.colorScheme.onBackground.copy(0.8f),
-                        focusedIndicatorColor = AppTheme.colorScheme.onBackground,
-                        unfocusedTextColor = AppTheme.colorScheme.onBackground,
-                        focusedTextColor = AppTheme.colorScheme.onBackground,
-                        unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
-                        focusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
-                        cursorColor = AppTheme.colorScheme.onBackground
-                    )
+                    colors = colors
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),

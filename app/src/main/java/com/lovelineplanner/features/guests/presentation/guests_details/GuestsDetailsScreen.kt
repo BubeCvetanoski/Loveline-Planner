@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CardGiftcard
@@ -21,7 +23,10 @@ import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.PeopleOutline
 import androidx.compose.material.icons.rounded.TableRestaurant
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -32,9 +37,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.lovelineplanner.core.presentation.composables.CountSwitch
+import com.lovelineplanner.core.presentation.composables.DropdownSelector
 import com.lovelineplanner.features.guests.presentation.guests_details.components.EditSwitch
 import com.lovelineplanner.features.guests.presentation.guests_details.components.GuestsDetailsScreenHeader
 import com.lovelineplanner.ui.theme.AppTheme
@@ -110,7 +118,275 @@ fun GuestsDetailsScreen(
 
 @Composable
 private fun EditableScreen() {
+    var nameSurname by remember { mutableStateOf("Bube Cvetanoski") }
+    var contact by remember { mutableStateOf("Contact: +389 70 000 000") }
+    val colors = TextFieldDefaults.colors(
+        unfocusedContainerColor = AppTheme.colorScheme.background,
+        focusedContainerColor = AppTheme.colorScheme.background,
+        unfocusedIndicatorColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+        focusedIndicatorColor = AppTheme.colorScheme.onBackground,
+        unfocusedTextColor = AppTheme.colorScheme.onBackground,
+        focusedTextColor = AppTheme.colorScheme.onBackground,
+        unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+        focusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+        cursorColor = AppTheme.colorScheme.onBackground
+    )
 
+    OutlinedTextField(
+        value = nameSurname,
+        onValueChange = { nameSurname = it },
+        placeholder = {
+            Text(
+                text = "Name and Surname",
+                style = AppTheme.typography.labelNormal,
+                color = AppTheme.colorScheme.onBackground
+            )
+        },
+        modifier = Modifier.fillMaxWidth(),
+        shape = AppTheme.shape.button,
+        textStyle = AppTheme.typography.body,
+        singleLine = true,
+        colors = colors
+    )
+    OutlinedTextField(
+        value = contact,
+        onValueChange = { contact = it },
+        placeholder = {
+            Text(
+                text = "Contact",
+                style = AppTheme.typography.labelNormal,
+                color = AppTheme.colorScheme.onBackground
+            )
+        },
+        modifier = Modifier.fillMaxWidth(),
+        shape = AppTheme.shape.button,
+        textStyle = AppTheme.typography.body,
+        singleLine = true,
+        colors = colors
+    )
+    Spacer(modifier = Modifier.height(AppTheme.size.large))
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                start = AppTheme.size.normal,
+                end = AppTheme.size.normal
+            ),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(AppTheme.size.normal)
+    ) {
+        var numberOfElements by remember {
+            mutableIntStateOf(4)
+        }
+        var invitation by remember {
+            mutableStateOf("")
+        }
+        var status by remember {
+            mutableStateOf("Pending")
+        }
+        var guests by remember {
+            mutableStateOf("")
+        }
+        var tableNumber by remember {
+            mutableStateOf("")
+        }
+        if (status == "Confirmed") numberOfElements = 4
+
+        val listOfPlaceholders = listOf(
+            "Invitation",
+            "Status",
+            "Guests",
+            "Table number"
+        )
+        val listOfOptions = listOf(
+            listOf("Sent", "Not sent"),
+            listOf("Confirmed", "Pending", "Rejected"),
+            listOf((0..50).toString()),
+            listOf((0..50).toString())
+        )
+        var listOfSelectedOptions = remember {
+            mutableListOf(invitation, status, guests, tableNumber)
+        }
+        //TODO if the status is pending, then 3 dots or loading icon, if the status is Rejected then X icon
+        repeat(numberOfElements) { index ->
+            DropdownSelector(
+                modifier = Modifier
+                    .wrapContentWidth()
+                    .weight(1f),
+                placeholder = listOfPlaceholders[index],
+                options = listOfOptions[index],
+                selectedOption = listOfSelectedOptions[index],
+                onOptionSelected = { listOfSelectedOptions[index] = it }
+            )
+        }
+    }
+    Spacer(modifier = Modifier.height(AppTheme.size.small))
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(AppTheme.size.normal),
+        verticalArrangement = Arrangement.spacedBy(AppTheme.size.small)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = AppTheme.size.normal,
+                    end = AppTheme.size.normal
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            var adultsCount by remember {
+                mutableIntStateOf(0)
+            }
+            var kidsCount by remember {
+                mutableIntStateOf(0)
+            }
+            CountSwitch(
+                label = "Adults:",
+                count = adultsCount,
+                onCountChange = { adultsCount = it }
+            )
+            CountSwitch(
+                label = "Kids:",
+                count = kidsCount,
+                onCountChange = { kidsCount = it }
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = AppTheme.size.normal,
+                    end = AppTheme.size.normal
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
+        ) {
+            var defaultMealTypeCount by remember {
+                mutableIntStateOf(0)
+            }
+            var halalCount by remember {
+                mutableIntStateOf(0)
+            }
+            var vegetarianCount by remember {
+                mutableIntStateOf(0)
+            }
+            var veganCount by remember {
+                mutableIntStateOf(0)
+            }
+            CountSwitch(
+                label = "Default:",
+                count = defaultMealTypeCount,
+                onCountChange = { defaultMealTypeCount = it }
+            )
+            CountSwitch(
+                label = "Halal:",
+                count = halalCount,
+                onCountChange = { halalCount = it }
+            )
+            CountSwitch(
+                label = "Vegetarian:",
+                count = vegetarianCount,
+                onCountChange = { vegetarianCount = it }
+            )
+            CountSwitch(
+                label = "Vegan:",
+                count = veganCount,
+                onCountChange = { veganCount = it }
+            )
+        }
+        var accommodation by remember {
+            mutableStateOf("")
+        }
+        DropdownSelector(
+            modifier = Modifier
+                .wrapContentWidth()
+                .weight(1f),
+            placeholder = "Accommodation",
+            options = listOf("Needed", "Not needed"),
+            selectedOption = accommodation,
+            onOptionSelected = { accommodation = it }
+        )
+        var reminder by remember {
+            mutableStateOf("")
+        }
+        OutlinedTextField(
+            value = reminder,
+            onValueChange = { reminder = it },
+            placeholder = {
+                Text(
+                    text = "Reminder",
+                    style = AppTheme.typography.labelNormal,
+                    color = AppTheme.colorScheme.onBackground
+                )
+            },
+            modifier = Modifier.fillMaxWidth(),
+            shape = AppTheme.shape.button,
+            textStyle = AppTheme.typography.body,
+            singleLine = true,
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = AppTheme.colorScheme.background,
+                focusedContainerColor = AppTheme.colorScheme.background,
+                unfocusedIndicatorColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+                focusedIndicatorColor = AppTheme.colorScheme.onBackground,
+                unfocusedTextColor = AppTheme.colorScheme.onBackground,
+                focusedTextColor = AppTheme.colorScheme.onBackground,
+                unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+                focusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+                cursorColor = AppTheme.colorScheme.onBackground
+            )
+        )
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(AppTheme.size.normal)
+    ) {
+        var note by remember {
+            mutableStateOf("")
+        }
+        val maxNoteLength = 2000
+
+        Text(
+            text = "Note",
+            style = AppTheme.typography.body,
+            color = AppTheme.colorScheme.onBackground
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        TextField(
+            value = note,
+            onValueChange = {
+                if (it.length <= maxNoteLength) note = it
+            },
+            placeholder = {
+                Text(
+                    text = "The stupid one remembers, the smart one writes. (maximum 2000 characters)",
+                    style = AppTheme.typography.labelNormal,
+                    color = AppTheme.colorScheme.onBackground
+                )
+            },
+            shape = AppTheme.shape.container,
+            modifier = Modifier.fillMaxWidth(),
+            textStyle = AppTheme.typography.labelNormal,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text
+            ),
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = AppTheme.colorScheme.primary.copy(0.3f),
+                focusedContainerColor = AppTheme.colorScheme.primary.copy(0.3f),
+                unfocusedIndicatorColor = AppTheme.colorScheme.background,
+                focusedIndicatorColor = AppTheme.colorScheme.background,
+                unfocusedTextColor = AppTheme.colorScheme.onBackground,
+                focusedTextColor = AppTheme.colorScheme.onBackground,
+                unfocusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+                focusedPlaceholderColor = AppTheme.colorScheme.onBackground.copy(0.8f),
+                cursorColor = AppTheme.colorScheme.onBackground
+            )
+        )
+    }
 }
 
 @Composable
