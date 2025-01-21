@@ -31,7 +31,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.lovelineplanner.core.presentation.composables.DropdownSelector
-import com.lovelineplanner.ui.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.AppTheme
 
 @Composable
 fun AddGuestsDialog(

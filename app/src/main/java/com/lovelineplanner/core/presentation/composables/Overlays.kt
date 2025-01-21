@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import com.lovelineplanner.ui.theme.Black
-import com.lovelineplanner.ui.theme.OverlayColor
-import com.lovelineplanner.ui.theme.Transparent
+import com.lovelineplanner.core.presentation.theme.Black
+import com.lovelineplanner.core.presentation.theme.OverlayColor
+import com.lovelineplanner.core.presentation.theme.Transparent
 
 @Composable
 fun InvertedVerticalGradientOverlay(
@@ -32,11 +32,12 @@ fun InvertedVerticalGradientOverlay(
 
 @Composable
 fun EquallyDistributedOverlay(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    fraction: Float = 0.5f
 ) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(color = Black.copy(alpha = 0.5f))
+            .background(color = Black.copy(alpha = fraction))
     )
 }

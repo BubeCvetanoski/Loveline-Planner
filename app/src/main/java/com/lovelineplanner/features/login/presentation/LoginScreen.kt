@@ -1,5 +1,6 @@
 package com.lovelineplanner.features.login.presentation
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,22 +43,28 @@ fun LoginScreen(
             modifier = Modifier.fillMaxSize()
         )
         EquallyDistributedOverlay()
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(48.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            if (isSignUpScreen)
-                SignUpFields(
-                    onSignInClicked = { isSignUpScreen = false }
-                )
-            else
-                SignInFields(
-                    onSignUpClicked = { isSignUpScreen = true },
-                    onLogInClicked = onLogInClicked
-                )
+
+        AnimatedContent(
+            targetState = isSignUpScreen
+        ) { targetState ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(48.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                if (targetState) {
+                    SignUpFields(
+                        onSignInClicked = { isSignUpScreen = false }
+                    )
+                } else {
+                    SignInFields(
+                        onSignUpClicked = { isSignUpScreen = true },
+                        onLogInClicked = onLogInClicked
+                    )
+                }
+            }
         }
     }
 }

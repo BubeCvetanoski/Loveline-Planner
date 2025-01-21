@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.lovelineplanner.R
-import com.lovelineplanner.ui.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.AppTheme
 
 @Composable
 fun GuestsSearchTextField(

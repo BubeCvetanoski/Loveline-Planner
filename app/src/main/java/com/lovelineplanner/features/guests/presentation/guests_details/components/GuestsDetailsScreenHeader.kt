@@ -18,8 +18,8 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.lovelineplanner.R
 import com.lovelineplanner.core.presentation.composables.InvertedVerticalGradientOverlay
-import com.lovelineplanner.ui.theme.AppTheme
-import com.lovelineplanner.ui.theme.White
+import com.lovelineplanner.core.presentation.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.White
 
 @Composable
 fun GuestsDetailsScreenHeader(

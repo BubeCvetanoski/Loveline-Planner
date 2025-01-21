@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.IconButton
@@ -14,8 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.lovelineplanner.ui.theme.AppTheme
-import com.lovelineplanner.ui.theme.Transparent
+import com.lovelineplanner.core.presentation.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.Transparent
 
 @Composable
 fun CountSwitch(
@@ -25,7 +26,7 @@ fun CountSwitch(
     onCountChange: (Int) -> Unit
 ) {
     Row(
-        modifier = modifier.padding(8.dp),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
@@ -33,15 +34,17 @@ fun CountSwitch(
             style = AppTheme.typography.body,
             color = AppTheme.colorScheme.onBackground,
             modifier = Modifier
-                .padding(end = 8.dp)
+                .padding(end = AppTheme.size.small)
         )
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.border(
-                width = 1.dp,
-                color = AppTheme.colorScheme.primary,
-                shape = AppTheme.shape.button
-            )
+            modifier = Modifier
+                .height(46.dp)
+                .border(
+                    width = 1.dp,
+                    color = AppTheme.colorScheme.primary,
+                    shape = AppTheme.shape.button
+                ),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(
                 onClick = { if (count > 0) onCountChange(count - 1) },
@@ -60,7 +63,10 @@ fun CountSwitch(
             Text(
                 text = count.toString(),
                 style = AppTheme.typography.body,
-                color = AppTheme.colorScheme.onBackground,
+                color = if (count > 0)
+                    AppTheme.colorScheme.onBackground
+                else
+                    AppTheme.colorScheme.onBackground.copy(0.8f),
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
             )
@@ -92,7 +98,7 @@ private fun NumberSwitchPreview() {
         ) {
             CountSwitch(
                 label = "Test:",
-                count = 1,
+                count = 0,
                 onCountChange = {}
             )
         }

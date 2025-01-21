@@ -1,5 +1,8 @@
 package com.lovelineplanner.features.guests.presentation.guests_overview
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -22,18 +25,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import com.lovelineplanner.core.presentation.theme.AppTheme
 import com.lovelineplanner.features.guests.presentation.guests_overview.components.AddGuestsDialog
+import com.lovelineplanner.features.guests.presentation.guests_overview.components.GuestItem
 import com.lovelineplanner.features.guests.presentation.guests_overview.components.GuestsList
 import com.lovelineplanner.features.guests.presentation.guests_overview.components.GuestsScreenHeader
 import com.lovelineplanner.features.guests.presentation.guests_overview.components.GuestsSearchTextField
-import com.lovelineplanner.ui.theme.AppTheme
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun GuestsScreen(
+fun SharedTransitionScope.GuestsScreen(
     modifier: Modifier = Modifier,
-    onItemCardClick: () -> Unit
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    onItemCardClick: (GuestItem) -> Unit
 ) {
     val context = LocalContext.current
     var showAddGuestsDialog by remember {
@@ -87,7 +92,8 @@ fun GuestsScreen(
             color = AppTheme.colorScheme.onBackground.copy(alpha = 0.1f)
         )
         GuestsList(
-            onItemCardClick = onItemCardClick
+            onItemCardClick = onItemCardClick,
+            animatedVisibilityScope = animatedVisibilityScope
         )
 
         if (showAddGuestsDialog) {
@@ -102,13 +108,13 @@ fun GuestsScreen(
 }
 
 
-@PreviewLightDark
-@Composable
-private fun GuestsScreenPreview() {
-    AppTheme {
-        GuestsScreen(
-            modifier = Modifier.background(AppTheme.colorScheme.background),
-            onItemCardClick = {}
-        )
-    }
-}
+//@PreviewLightDark
+//@Composable
+//private fun GuestsScreenPreview() {
+//    AppTheme {
+//        GuestsScreen(
+//            modifier = Modifier.background(AppTheme.colorScheme.background),
+//            onItemCardClick = {}
+//        )
+//    }
+//}

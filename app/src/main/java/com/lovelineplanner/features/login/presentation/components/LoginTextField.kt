@@ -26,10 +26,10 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.lovelineplanner.ui.theme.AppTheme
-import com.lovelineplanner.ui.theme.LightGray
-import com.lovelineplanner.ui.theme.Transparent
-import com.lovelineplanner.ui.theme.White
+import com.lovelineplanner.core.presentation.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.LightGray
+import com.lovelineplanner.core.presentation.theme.Transparent
+import com.lovelineplanner.core.presentation.theme.White
 
 @Composable
 fun LoginTextField(

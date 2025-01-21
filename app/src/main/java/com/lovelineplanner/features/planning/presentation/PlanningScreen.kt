@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.lovelineplanner.ui.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.AppTheme
 
 @Composable
 fun PlanningScreen(

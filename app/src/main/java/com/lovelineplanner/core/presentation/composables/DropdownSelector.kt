@@ -33,7 +33,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import com.lovelineplanner.ui.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.AppTheme
 
 @Composable
 fun DropdownSelector(

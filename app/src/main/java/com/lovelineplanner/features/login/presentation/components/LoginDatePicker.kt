@@ -23,12 +23,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
-import com.lovelineplanner.core.common.util.HelperFunctions.convertMillisToDate
+import com.lovelineplanner.core.presentation.util.HelperFunctions.convertMillisToDate
 import com.lovelineplanner.core.presentation.composables.PrimaryButton
-import com.lovelineplanner.ui.theme.AppTheme
-import com.lovelineplanner.ui.theme.LightGray
-import com.lovelineplanner.ui.theme.Transparent
-import com.lovelineplanner.ui.theme.White
+import com.lovelineplanner.core.presentation.theme.AppTheme
+import com.lovelineplanner.core.presentation.theme.LightGray
+import com.lovelineplanner.core.presentation.theme.Transparent
+import com.lovelineplanner.core.presentation.theme.White
 
 @Composable
 fun LoginDatePicker(
